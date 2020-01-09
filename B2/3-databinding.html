@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <p>{{ mesaj }}</p>
+        <p v-text="mesaj_html"></p>
+        <p v-html="mesaj_html"></p> <!-- "v-html" değerin içindeki HTML kodlarını algılamayı sağlıyor.  --> 
+        <hr>
+        
+        <div>
+            <h6>Mesajiniz</h6>
+            <input class="form-control" type="text" v-model="mesaj" /> <!-- "v-model" değeri anlık olarak değiştirebiliyoruz.  --> 
+        </div>
+        <div>
+            <h6>Fiyat</h6>
+            <input class="form-control" type="text" v-model.number="fiyat" />
+            <h6>Kdv tutarı: {{ fiyat * 0.18 }}</h6>
+            <h6>Kdv durumu: {{ (fiyat * 0.18) < 5 ? "Düşük" : "Yüksek" }}</h6>
+            <h6 v-once>Kdv durumu: {{ (fiyat * 0.18) < 5 ? "Düşük" : "Yüksek" }}</h6> <!-- "v-once" sadece 1 kere değiştirir, sabit tutar.  --> 
+        </div>
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                mesaj: 'Merhaba Vue!',
+                mesaj_html: 'Merhaba <b>Mecit</b>',
+                fiyat: 12
+            }
+        })
+    </script>
+</body>
+</html>
