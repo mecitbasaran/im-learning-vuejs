@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app" class="p40">
+
+        <span class="badge badge-success">{{ sayi }}</span>
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                sayi: 5
+            },
+            created() { // Sayfada oluşturulduğu anda
+                console.log('Instance olusturuldu.');
+            },
+            mounted() { // Dom'a eklendigi anda
+                console.log("Dom'a eklendi.");
+                this.sayi = Math.floor(Math.random() * 49) + 1;
+            },
+            updated() { // Dom uzerinde bir degisiklik oldugu anda
+                console.log("Dom'a guncellendi.");
+            },
+            destroyed() {// Instance sayfadan kaldirildigi anda "app.$destroy();" ile kaldirilabiliyor.
+                console.log('Instance silindi.');
+            }
+        });
+        app.$destroy();
+    </script>
+</body>
+</html>
