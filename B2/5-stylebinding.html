@@ -24,6 +24,18 @@
             Birden fazla data değeri çekmek için [dizi] içerisine alıyoruz, ve elle eklemek için 'Tek tırnak' arasına almamız yeterli.
         </div>
 
+        <div class="form-group row">
+            <div class="col-md-2">
+                <label for="isim">Ismi</label>
+                <input type="text" id="isim" v-model="kullanici.isim" :class="{ 'form-control is-valid' : kullanici.isim, 'form-control is-invalid' : !kullanici.isim }" />
+                <span>Isminiz {{ kullanici.isim.length }} karakter</span>
+            </div>
+            <div class="col-md-6">
+                <label>Rolu: </label>
+                <span :class="{ 'badge badge-success' : kullanici.rol == 'Admin', 'badge badge-warning' : kullanici.rol != 'Admin'}"> {{ kullanici.rol }} "Vue'da class içine koşul verebiliyoruz"</span>
+            </div>
+        </div>
+
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -34,7 +46,12 @@
             data: {
                 selectedStyle: 'alert alert-success',
                 bgColor: 'bg-success',
-                textColor: 'text-white'
+                textColor: 'text-white',
+                kullanici: {
+                    id: 1,
+                    isim: 'Mecit',
+                    rol: 'Admin'
+                }
             }
         })
     </script>
