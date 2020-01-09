@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <h1>Kullanıcılar: ({{ users.length }}) kullanıcı var.</h1>
+        <hr>
+        <table class="table table-bordered table-hover">
+            <tr class="bg-secondary text-white">
+                <td>#</td>
+                <td>Id</td>
+                <td>Isim</td>
+                <td>Rol</td>
+            </tr>
+            <tr v-for="(user, index) in users"> <!-- index yazarak ile dizinin index numarasını çekebiliyoruz  -->
+                <td> {{ index }} </td>
+                <td> {{ user.userId }} </td>
+                <td> {{ user.userName}} </td>
+                <td> {{ user.userRole}} </td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                users: [
+                    {
+                        userId: 25,
+                        userName: 'Mecit',
+                        userRole: 'Admin'
+                    },
+                    {
+                        userId: 42,
+                        userName: 'Ali',
+                        userRole: 'User'
+                    },
+                    {
+                        userId: 15,
+                        userName: 'Kenan',
+                        userRole: 'User'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
