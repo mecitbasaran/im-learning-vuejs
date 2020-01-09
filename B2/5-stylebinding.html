@@ -12,13 +12,19 @@
 
     <div id="app">
 
-        <select v-model="selectedStyle" class="form-control">
-            <option>alert alert-success</option>
-            <option>alert alert-danger</option>
-            <option>alert alert-info</option>
-            <option>alert alert-warning</option>
-        </select>
-        <div :class="selectedStyle">Merhaba</div>
+        <div class="form-group row">
+            <div class="col-md-2">
+                <select v-model="selectedStyle" class="form-control">
+                    <option>alert alert-success</option>
+                    <option>alert alert-danger</option>
+                    <option>alert alert-info</option>
+                    <option>alert alert-warning</option>
+                </select>
+            </div>
+            <div class="col-md-10">
+                <div :class="selectedStyle">Merhaba</div>
+            </div>
+        </div>
         <hr>
         <div :class="[bgColor, textColor, 'jumbotron']">
             Birden fazla data değeri çekmek için [dizi] içerisine alıyoruz, ve elle eklemek için 'Tek tırnak' arasına almamız yeterli.
@@ -27,12 +33,12 @@
         <div class="form-group row">
             <div class="col-md-2">
                 <label for="isim">Ismi</label>
-                <input type="text" id="isim" v-model="kullanici.isim" :class="{ 'form-control is-valid' : kullanici.isim, 'form-control is-invalid' : !kullanici.isim }" />
-                <span>Isminiz {{ kullanici.isim.length }} karakter</span>
+                <input type="text" id="isim" v-model="user.userName" :class="{ 'form-control is-valid' : user.userName, 'form-control is-invalid' : !user.userName }" />
+                <span>Isminiz {{ user.userName.length }} karakter</span>
             </div>
             <div class="col-md-6">
                 <label>Rolu: </label>
-                <span :class="{ 'badge badge-success' : kullanici.rol == 'Admin', 'badge badge-warning' : kullanici.rol != 'Admin'}"> {{ kullanici.rol }} "Vue'da class içine koşul verebiliyoruz"</span>
+                <span :class="{ 'badge badge-success' : user.userRole == 'Admin', 'badge badge-warning' : user.userRole != 'Admin'}"> {{ user.userRole }} "Vue'da class içine koşul verebiliyoruz"</span>
             </div>
         </div>
         <hr>
@@ -49,10 +55,10 @@
                 selectedStyle: 'alert alert-success',
                 bgColor: 'bg-success',
                 textColor: 'text-white',
-                kullanici: {
-                    id: 1,
-                    isim: 'Mecit',
-                    rol: 'Admin'
+                user: {
+                    userId: 1,
+                    userName: 'Mecit',
+                    userRole: 'Admin'
                 },
                 styles: {
                     color: 'red',
