@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <select v-model="selectedStyle" class="form-control">
+            <option>alert alert-success</option>
+            <option>alert alert-danger</option>
+            <option>alert alert-info</option>
+            <option>alert alert-warning</option>
+        </select>
+        <div :class="selectedStyle">Merhaba</div>
+        <hr>
+        <div :class="[bgColor, textColor, 'jumbotron']">
+            Birden fazla data değeri çekmek için [dizi] içerisine alıyoruz, ve elle eklemek için 'Tek tırnak' arasına almamız yeterli.
+        </div>
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                selectedStyle: 'alert alert-success',
+                bgColor: 'bg-success',
+                textColor: 'text-white'
+            }
+        })
+    </script>
+</body>
+</html>
