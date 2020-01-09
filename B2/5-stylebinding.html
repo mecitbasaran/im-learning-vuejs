@@ -35,6 +35,8 @@
                 <span :class="{ 'badge badge-success' : kullanici.rol == 'Admin', 'badge badge-warning' : kullanici.rol != 'Admin'}"> {{ kullanici.rol }} "Vue'da class içine koşul verebiliyoruz"</span>
             </div>
         </div>
+        <hr>
+        <div :style="styles">Merhaba</div>
 
     </div>
 
@@ -51,6 +53,10 @@
                     id: 1,
                     isim: 'Mecit',
                     rol: 'Admin'
+                },
+                styles: {
+                    color: 'red',
+                    fontSize: '26px' // font-size diye belirtemiyoruz.
                 }
             }
         })
