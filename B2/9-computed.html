@@ -15,8 +15,11 @@
         <input type="text" v-model="userName" />
         <input type="text" v-model="userSurname" />
         <p>{{ userNameSurname }}</p>
+
         <input type="text" v-model="productPrice" />
         <p>KDV (%18): {{ calculateVAT }}</p>
+
+        <p>{{ userNameSurname2 }}</p>
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -35,6 +38,16 @@
                 },
                 calculateVAT() {
                     return this.productPrice * 0.18;
+                },
+                userNameSurname2: { // get, set değerleri ile tarayıcı üzerinden veri değişimi yapabiliyoruz.
+                    get: function() {
+                        return this.userName + ' ' + this.userSurname;
+                    },
+                    set: function(value) {
+                        let parts = value.split(' ');
+                        this.userName = parts[0];
+                        this.userSurname = parts[1];
+                    }
                 }
             }
         });
