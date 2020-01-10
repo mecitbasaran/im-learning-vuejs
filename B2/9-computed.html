@@ -20,6 +20,16 @@
         <p>KDV (%18): {{ calculateVAT }}</p>
 
         <p>{{ userNameSurname2 }}</p>
+        <hr>
+        <b>methods ve computed farkı:</b> methods aynı işlemi 3 kere hesaplayıp ekrana verirken, computed 1 kere hesaplayıp onu her yerde kullanıyor.        
+        <hr>
+        <p>{{ userNameSurname2 }}</p>
+        <p>{{ userNameSurname2 }}</p>
+        <p>{{ userNameSurname2 }}</p>
+        <hr>
+        <p>{{ userNameSurname3() }}</p>
+        <p>{{ userNameSurname3() }}</p>
+        <p>{{ userNameSurname3() }}</p>
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -32,6 +42,12 @@
                 userSurname: 'Başaran',
                 productPrice: 50,
             },
+            methods:{
+                userNameSurname3() {
+                    console.log('methods calisti');
+                    return this.userName + ' ' + this.userSurname;
+                }
+            },
             computed: {
                 userNameSurname() {
                     return this.userName + ' ' + this.userSurname;
@@ -41,6 +57,7 @@
                 },
                 userNameSurname2: { // get, set değerleri ile tarayıcı üzerinden veri değişimi yapabiliyoruz.
                     get: function() {
+                        console.log('computed calisti');
                         return this.userName + ' ' + this.userSurname;
                     },
                     set: function(value) {
