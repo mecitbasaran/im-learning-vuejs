@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <input type="text" class="form-control" v-model="name">
+        <span v-if="name.length > 0"> İsminiz <b>{{ name.length }}</b> karakter</span>
+        <hr>
+        <button class="btn btn-primary" @click="hideAndShow"> Gizle / Göster </button>
+        <br>
+        <div v-if="detailsIsVisible">
+            <b>"v-if"</b> ile belirtirsek, "visible" özelliği "false" olduğunda <b>html kodları</b> arasından bu <b>div tamamen kaldırılır.</b>
+        </div>
+        <div v-show="detailsIsVisible">
+            <b>"v-show"</b> ile belirtirsek, "visible" özelliği "false" olduğunda <b>html kodlarından kaldırılmaz,</b> sadece <b>"display: none" ile gizlenir.</b>
+        </div>
+        <hr>
+        <select class="form-control col-2" v-model="userType" >
+            <option>Herkes görsün.</option>
+            <option value="manager">Yönetici görsün.</option>
+            <option value="customer">Müşteri görsün.</option>
+        </select>
+        <div v-if="userType === 'manager'">
+            Sadece yöneticiler görebilir.
+        </div>
+        <div v-else-if="userType === 'customer'">
+            Sadece müşteriler görebilir.
+        </div>
+        <div v-else>
+            Herkes görebilir.
+        </div>
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                name: "Mecit",
+                detailsIsVisible: true,
+                userType : 'Herkes görsün.'
+            },
+            methods: {
+                hideAndShow() {
+                    this.detailsIsVisible = !this.detailsIsVisible;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
