@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <input type="text" v-model="userName" />
+        <input type="text" v-model="userSurname" />
+        <p>{{ userNameSurname }}</p>
+        <input type="text" v-model="productPrice" />
+        <p>KDV (%18): {{ calculateVAT }}</p>
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                userName: 'Mecit',
+                userSurname: 'Başaran',
+                productPrice: 50,
+            },
+            computed: {
+                userNameSurname() {
+                    return this.userName + ' ' + this.userSurname;
+                },
+                calculateVAT() {
+                    return this.productPrice * 0.18;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
