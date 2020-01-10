@@ -30,6 +30,15 @@
         <p>{{ userNameSurname3() }}</p>
         <p>{{ userNameSurname3() }}</p>
         <p>{{ userNameSurname3() }}</p>
+        <hr>
+        
+        ['Mecit', 'Ahmet', 'Cem', 'Melih', 'Mehmet', 'Mahmut'] arasından İsmi "M" ile başlayan kullanıcıları listeler
+        <ul>
+            <li v-for="user in usersStartingWithM">
+                {{ user }}
+            </li>
+        </ul>
+
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -41,6 +50,7 @@
                 userName: 'Mecit',
                 userSurname: 'Başaran',
                 productPrice: 50,
+                users: ['Mecit', 'Ahmet', 'Cem', 'Melih', 'Mehmet', 'Mahmut']
             },
             methods:{
                 userNameSurname3() {
@@ -65,6 +75,9 @@
                         this.userName = parts[0];
                         this.userSurname = parts[1];
                     }
+                },
+                usersStartingWithM() {
+                    return this.users.filter(u => u.startsWith('M')); // users" içerisinde bir sorgu yaptığımızdan dolayı "u" diye belirttim yoksa harf fark etmez (x, k, t, vb.)
                 }
             }
         });
