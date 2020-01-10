@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <span>Odun sayısı:</span>
+        <input type="number" v-model="wood" class="form-control col-2">
+        <span>Taş sayısı:</span>
+        <input type="number" v-model="stone" class="form-control col-2">
+        <p>Toplam kullanılan malzeme (with watch): {{ total }}</p>
+        <p>Toplam kullanılan malzeme (with computed): {{ total2 }}</p>
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                wood: 0,
+                stone: 0,
+                total: 0
+            },
+            watch: {
+                // ## Aynı hesaplama işlemini computed ile alttaki gibi yapılabilir, ancak yeni ve eski değer takip edilemez.
+                // ## Yani veri değiştiğinde yapılacak işlemi burada yaptırıyoruz.
+                wood(newValue, oldValue) {
+                    console.log('Odun yeni değer: ' + newValue + ' Odun eski değer: ' + oldValue);
+                    this.total = parseInt(this.wood) + parseInt(this.stone);
+                },
+                stone(newValue, oldValue) {
+                    console.log('Taş yeni değer: ' + newValue + ' Taş eski değer: ' + oldValue);
+                    this.total = parseInt(this.wood) + parseInt(this.stone);
+                }
+            },
+            computed: {
+                total2() {
+                    return parseInt(this.wood) + parseInt(this.stone);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
