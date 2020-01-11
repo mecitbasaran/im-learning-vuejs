@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+        <p> {{ title }} </p> 
+        <p><b>Hepsi büyük:</b> {{ title | upperCase }} </p>       
+        <p><b>Hepsi küçük:</b> {{ title | lowerCase }} </p>       
+        <p><b>İlk harf büyük:</b> {{ title | initialLetterUpperCase }} </p>       
+        <p><b>İlk harfler büyük:</b> {{ title | initialLettersUpperCase }} </p>       
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                title: 'lorem ipsum DOLOR sit amet consectetur'
+            },
+            filters: {
+                upperCase(value) {
+                    return value.toString().toUpperCase();
+                },
+                lowerCase(value) {
+                    return value.toString().toLowerCase();
+                },
+                initialLetterUpperCase(value) {
+                    // ## charAt(0) ilk harfi alıyor ve value.slice(1) ikinci harf ve sonrasını alıyor. (0-1 index olarak.)
+                    return value.toString().charAt(0).toUpperCase() + value.slice(1);
+                    // ## slice'tan sonra slice.toLowerCase() eklersek geri kalan kelimeleri küçük harf yapmış oluruz, böylelikle (MEcit, MeCiT) gibi kelimelerden kurtuluruz.
+                },
+                initialLettersUpperCase(value) {
+                    let words = value.toString().split(' '); // ## Cümledeki kelimeleri tek tek boşluklarından ayırdık.
+                    let returnValue = '';
+                    words.forEach(word => { // ## forEach ile hepsini tek tek baş harflerini büyük yaparak döndük.
+                        returnValue += word.toString().charAt(0).toUpperCase() + word.slice(1) + ' ';
+                    });
+                    return returnValue;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
