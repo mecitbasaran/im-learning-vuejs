@@ -35,6 +35,14 @@
             <label><input type="radio" v-model="user.userGender" value="male"> Erkek </label>
             <label><input type="radio" v-model="user.userGender" value="female"> Kadın </label>
             <pre class="form-text text-muted">{{ user.userGender }}</pre>
+            <hr>
+            <span> Doğum yeri: </span>
+            <select v-model="user.userPlaceOfBirth" class="form-control col-3">
+                <option selected disabled> Seçiniz </option>
+                <option v-for="city in cities" :value="city.cityValue"> {{ city.cityName }} </option>
+            </select>
+            <pre class="form-text text-muted">{{ user.userPlaceOfBirth }}</pre>
+
         </form>
        
 
@@ -51,8 +59,16 @@
                     userAddress: 'Yenisehir/MERSIN',
                     isActive: true,
                     selectedRoles: [],
-                    userGender: 'male'
-                }
+                    userGender: 'male',
+                    userPlaceOfBirth: 33
+                },
+                cities: [
+                    { cityName: 'Adana', cityValue: '1' },
+                    { cityName: 'Ankara', cityValue: '6' },
+                    { cityName: 'Mersin', cityValue: '33' },
+                    { cityName: 'İstanbul', cityValue: '34' },
+                    { cityName: 'İzmir', cityValue: '35' }
+                ]
             }
         })
     </script>
