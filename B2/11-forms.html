@@ -17,7 +17,22 @@
             <input type="text" class="form-control col-2" v-model="user.userName">
             <p>Adresiniz:</p>
             <textarea  class="form-control col-2"  v-model="user.userAddress" rows="5"></textarea>
+            <hr>
+            <label><input type="checkbox" v-model="user.isActive"> Kullanıcı aktif mi? </label>
+            <span class="form-text text-muted"> {{ user.isActive }} </span>
+            <hr>
+            <label><input type="checkbox" v-model="user.selectedRoles" value="manager"> Yönetici </label>
+            <label><input type="checkbox" v-model="user.selectedRoles" value="editor"> Editör </label>
+            <label><input type="checkbox" v-model="user.selectedRoles" value="customer"> Müşteri </label>
+            <br>
+            <select v-model="user.selectedRoles" class="form-control col-3" multiple>
+                <option value="manager"> Yönetici </option>
+                <option value="editor"> Editör </option>
+                <option value="customer"> Müşteri </option>
+            </select>
+            <pre class="form-text text-muted">{{ user.selectedRoles }}</pre>
         </form>
+       
 
     </div>
 
@@ -29,7 +44,9 @@
             data: {
                 user:{
                     userName: 'Mecit',
-                    userAddress: 'Yenisehir/MERSIN'
+                    userAddress: 'Yenisehir/MERSIN',
+                    isActive: true,
+                    selectedRoles: []
                 }
             }
         })
