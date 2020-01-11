@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <form action="">
+            <p>Adınız:</p>
+            <input type="text" class="form-control col-2" v-model="user.userName">
+            <p>Adresiniz:</p>
+            <textarea  class="form-control col-2"  v-model="user.userAddress" rows="5"></textarea>
+        </form>
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                user:{
+                    userName: 'Mecit',
+                    userAddress: 'Yenisehir/MERSIN'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
