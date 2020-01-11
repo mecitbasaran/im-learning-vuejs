@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +31,10 @@
                 <option value="customer"> Müşteri </option>
             </select>
             <pre class="form-text text-muted">{{ user.selectedRoles }}</pre>
+            <hr>
+            <label><input type="radio" v-model="user.userGender" value="male"> Erkek </label>
+            <label><input type="radio" v-model="user.userGender" value="female"> Kadın </label>
+            <pre class="form-text text-muted">{{ user.userGender }}</pre>
         </form>
        
 
@@ -46,10 +50,11 @@
                     userName: 'Mecit',
                     userAddress: 'Yenisehir/MERSIN',
                     isActive: true,
-                    selectedRoles: []
+                    selectedRoles: [],
+                    userGender: 'male'
                 }
             }
         })
     </script>
 </body>
-</html>
+</html
