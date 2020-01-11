@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+
+        <div v-alert=" 'success' "> {{ title }} </div>
+        <div v-bg="{ type: 'info' }" class="p-2 mb-4 text-white"> {{ title }} </div>
+        <span> {{ dateTime }} </span>
+        <input type="text" v-model="dateTime" v-datetime:date="dateTime" class="form-control col-2">
+        <input type="text" v-model="dateTime" v-datetime:time="dateTime" class="form-control col-2">
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        // ## İstenirse bu şekilde GLOBAL olarak'ta tanımlanabilir.
+        // Vue.directive('datetime', function (el, binding) {
+        //     if (binding.arg === 'date') el.value = new Date(binding.value).toLocaleDateString();
+        //     else el.value = new Date(binding.value).toLocaleTimeString();
+        // });
+
+
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                title: 'Lorem ipsum dolar sit amet',
+                dateTime: '2020-01-11 20:39:00'
+            },
+            directives: {
+                alert: function (el, binding) {
+                    el.setAttribute('class', 'alert alert-' + binding.value); // div'e "alert alert-success" class'ı ekleyecek
+                },
+                bg: function (el, binding) {
+                    el.setAttribute('class', el.getAttribute('class') + ' bg-' + binding.value.type); // class sonuna bg-info olarak ekleyecek
+                },
+                datetime: function (el, binding) {
+                   if (binding.arg === 'date') el.value = new Date(binding.value).toLocaleDateString();
+                   else el.value = new Date(binding.value).toLocaleTimeString();
+                }
+            }
+        })
+    </script>
+</body>
+</html>
