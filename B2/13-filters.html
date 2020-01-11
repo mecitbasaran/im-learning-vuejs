@@ -16,10 +16,25 @@
         <p><b>Hepsi küçük:</b> {{ title | lowerCase }} </p>       
         <p><b>İlk harf büyük:</b> {{ title | initialLetterUpperCase }} </p>       
         <p><b>İlk harfler büyük:</b> {{ title | initialLettersUpperCase }} </p>       
+        <p><b>Tersten yaz:</b> {{ title | reverseWrite }} </p>       
+        <p><b>Yazıyı kısaltma:</b> {{ title | truncate(15) }} </p>       
     </div>
 
     <script src="../assets/js/vue.js"></script>
     <script>
+
+        Vue.filter('reverseWrite', function(value){
+            return value.toString().split('').reverse().join('');
+        });
+        Vue.filter('truncate', function(value, length){
+            if (value.length < length) {
+                return value;
+            }
+            length = length - 3;
+            return value.substring(0, length) + '...';
+        });
+
+
         const app = new Vue({
             el: '#app',
             name: 'Uzaktan Kurs',
