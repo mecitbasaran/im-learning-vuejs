@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/toastr.min.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+            <div v-if="errors.length > 0" class="alert alert-danger">
+                <p>Lütfen form verilerini düzeltiniz:</p>
+                <ul>
+                    <li v-for="error in errors"> {{ error }} </li>
+                </ul>
+            </div>
+            <form action="#" method="POST" @submit="saveUser" novalidate="true"> 
+                <!-- (novalidate="true") client'in veya bootstrap'in vue validation işlerini ezmemesi için kullanılıyor -->
+                <div class="form-group col-3">
+                    <label for="txtNameSurname">Ad Soyad:</label>
+                    <input class="form-control" :class="{'border-danger': errors.length > 0 && !userNameSurname}"  type="text" id="txtNameSurname" v-model="userNameSurname">
+                    <span v-if="errors.length > 0 && !userNameSurname" class="text-danger">Ad Soyad girmelisiniz.</span>
+                </div>
+                <div class="form-group col-3">
+                    <label for="txtEmail">E-mail:</label>
+                    <input class="form-control" type="email" id="txtEmail" v-model="userEmail">
+                </div>
+                <div class="form-group col-3">
+                    <label for="txtPassword">Şifre:</label>
+                    <input class="form-control" type="password" id="txtPassword" v-model="userPassword">
+                </div>
+                <div class="form-group col-3">
+                    <label for="txtConfirmPassword">Şifre (Tekrar):</label>
+                    <input class="form-control" type="password" id="txtConfirmPassword" v-model="userConfirmPassword">
+                </div>
+                <div class="form-group col-12">
+                    <label><input type="checkbox" class="form-control col-4" v-model="userHobbies" value="1"> Teknoloji </label>               
+                    <label><input type="checkbox" class="form-control col-4" v-model="userHobbies" value="2"> Sinema </label>                    
+                    <label><input type="checkbox" class="form-control col-4" v-model="userHobbies" value="3"> Futbol </label>                    
+                </div>
+                <div class="form-group col-12"><input type="submit" class="btn btn-primary" value="Kaydet"> </div>   
+            </form>
+
+    </div>
+
+    <script src="../assets/js/jquery-2.2.4.min.js"></script>
+    <script src="../assets/js/toastr.min.js"></script>
+    <script src="../assets/js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {
+                errors: [],
+                userNameSurname: '',
+                userEmail: '',
+                userPassword: '',
+                userConfirmPassword: '',
+                userHobbies: []
+            },
+            methods: {
+                saveUser(e) {
+                    e.preventDefault();
+                    this.errors = [];
+                    if (!this.userNameSurname) this.errors.push('Ad Soyad girmelisiniz.');              
+                    if (!this.userEmail) this.errors.push('E-Posta girmelisiniz.');
+                    if (!this.validEmail(this.userEmail)) this.errors.push('E-Posta geçersiz.');
+                    if (!this.userPassword && !this.userConfirmPassword) this.errors.push('Şifre girmelisiniz.');
+                    if (this.userPassword !== this.userConfirmPassword) this.errors.push('Şifreler uyuşmuyor.');
+                    if (this.errors.length === 0) toastr.success('Kayıt Başarılı');
+                    else {
+                        let msg = '';   
+                        this.errors.forEach(value => {
+                            msg += value + '<br>'; 
+                        });
+                        toastr.error(msg);
+                    }
+                },
+                validEmail: function(userEmail) { // Geçerli bir E-Posta olup olmadığını kontrol ediyor 
+                    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                    return re.test(userEmail);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
