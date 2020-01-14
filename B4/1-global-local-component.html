@@ -11,9 +11,11 @@
 <body class="p-5">
 
     <div id="app">
+        <span>Global Components: </span>
         <alert-count></alert-count>
         <alert-count></alert-count>
-        <alert-count></alert-count>
+        <span>Local Component: </span>
+        <alert-count2></alert-count2>
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -32,14 +34,29 @@
                 </div>
             `
         });  
+
+        var AlertCount2 = {
+            data() {
+                return {
+                    count: 0
+                }
+            },
+            template: `
+                <div class="alert alert-danger">
+                    Merhaba
+                    <button class="btn btn-sm btn-primary" @click="count++"> {{ count }} kez tıkladın. </button>
+                </div>
+            `
+        };
         
         const app = new Vue({
             el: '#app',
             name: 'Uzaktan Kurs',
-            data: {
-                mesaj: 'Merhaba Vue!'
+            data: {},
+            components:{
+                'alert-count2': AlertCount2
             }
-        })
+        });
     </script>
 </body>
 </html>
