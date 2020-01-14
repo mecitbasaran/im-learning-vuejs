@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/app.css">
+</head>
+<body class="p-5">
+
+    <div id="app">
+        <alert-count>Merhaba</alert-count>
+        <alert-count>Nasılsın</alert-count>
+        <span>Eğer değer boş ise slot içindeki değer yazılır.</span>
+        <alert-count></alert-count> 
+
+    </div>
+
+    <script src="../assets/js/vue.js"></script>
+    <script>
+
+        Vue.component('AlertCount', {            
+            template: `
+                <div class="alert alert-success">
+                    <slot>Varsayılan değer</slot>
+                </div>
+            `
+        });  
+      
+        const app = new Vue({
+            el: '#app',
+            name: 'Uzaktan Kurs',
+            data: {}
+        });
+    </script>
+</body>
+</html>
