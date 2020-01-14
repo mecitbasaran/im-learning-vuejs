@@ -16,6 +16,15 @@
         <span>Eğer değer boş ise slot içindeki değer yazılır.</span>
         <alert-count></alert-count> 
 
+        <card-with-header>
+            <template slot="header">Üye girişi</template>
+            Kullanıcı adı ve şifre giriniz.
+            <template slot="footer">
+                <button class="btn btn-sm btn-primary">Oturum aç.</button>
+            </template>
+        </card-with-header>
+
+
     </div>
 
     <script src="../assets/js/vue.js"></script>
@@ -25,6 +34,24 @@
             template: `
                 <div class="alert alert-success">
                     <slot>Varsayılan değer</slot>
+                </div>
+            `
+        });  
+
+        Vue.component('CardWithHeader', {            
+            template: `
+                <div class="card">
+                    <div class="card-header">
+                        <slot name="header">Başlık</slot>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                            <slot>İçerik</slot>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <slot name="footer">Alt kısım</slot>
+                    </div>
                 </div>
             `
         });  
